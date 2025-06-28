@@ -1,3 +1,4 @@
+<div style="border: 1px solid black; padding: 10px; margin-bottom: 10px;">
 <p>
   <strong>Commenter:</strong>
   <%= comment.commenter %>
@@ -7,3 +8,9 @@
   <strong>Comment:</strong>
   <%= comment.body %>
 </p>
+
+<% if defined?(show_actions) && show_actions %>
+  <%= link_to "Manage this comment", article_comment_path(@article, comment) %> 
+<% end %>
+
+</div>

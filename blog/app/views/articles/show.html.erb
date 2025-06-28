@@ -3,16 +3,22 @@
 <p><%= @article.body %></p>
 
 <ul>
-    <li><%= link_to "Edit", edit_article_path(@article) %></li>
-    <li><%= link_to "Destroy", article_path(@article), data: {
+    <li><%= link_to "Edit Article", edit_article_path(@article) %></li>
+    <li><%= link_to "Delete Article", article_path(@article), data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
                   } %></li>
     <li><%= link_to "Back", articles_path %></li>
 </ul>
 
-<h2>Comments</h2>
-<%= render @article.comments %>
+<h2>Comments (<%= @article.comments.count %>)</h2>
 
+<% limited_comments = @article.comments.limit(3) %>
+<% limited_comments.each do |comment| %>
+  <%= render "comments/comment", comment: comment, show_actions: false %>
+<% end %>
+
+<%= link_to "View/Manage all comments", article_comments_path(@article) %>
+<br><br>
 <h2>Add a comment:</h2>
-<%= render "comments/form", article: @article %>
+<%= render "comments/form", article: @article, comment: @comment %>

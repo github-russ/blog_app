@@ -1,0 +1,7 @@
+<h2>All Comments for Article "<%= @article.title %>"</h2>
+
+<% @article.comments.each do |comment| %>
+  <%= render "comments/comment", comment: comment, show_actions: true %>
+<% end %>
+
+<%= link_to "Back to Article: #{@article.title}", article_path(@article) %>

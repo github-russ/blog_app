@@ -1,0 +1,12 @@
+<h2>Comment by <%= @comment.commenter %></h2>
+
+<p><%= @comment.body %></p>
+
+<p>Posted on <%= @comment.created_at %></p>
+
+<%= link_to "Edit", edit_article_comment_path(@article, @comment) %> |
+<%= link_to "Delete", article_comment_path(@article, @comment), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %> |
+<%= link_to "Back", article_comments_path(@article) %>
